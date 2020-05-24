@@ -1,3 +1,7 @@
+/**
+ * SIMULATIONS OF CALLING THE METHODS
+ */
+
 const Samples = require('./src/Samples')
 
 const samples = new Samples()
