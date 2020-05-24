@@ -1,4 +1,4 @@
-const { strictEqual, doesNotThrow, throws } = require('assert')
+const { strictEqual } = require('assert')
 
 const SamplesService = require('../../src/Samples/src/services/SamplesService')
 const MockRepository = require('../utils/MockRepository')
