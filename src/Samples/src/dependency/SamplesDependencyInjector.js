@@ -1,25 +1,25 @@
-const SamplesService = require('../services/SamplesService')
-const SamplesRepository = require('../data/SamplesRepository')
-const Data = require('../data/data.json')
-const GetAllSamples = require('../controllers/GetAllSamples')
-const GetSampleById = require('../controllers/GetSampleById')
-
 module.exports = class SamplesDependencyInjector {
-    constructor() { }
+    constructor({ repository, service, data, getAllSamples, getSamplesById }) {
+        this._Data = data
+        this._SamplesService = service
+        this._SamplesRepository = repository
+        this._GetAllSamples = getAllSamples
+        this._GetSampleById = getSamplesById
+    }
 
     get GetAllSamples() {
-        return new GetAllSamples({ service: this.SamplesService })
+        return new this._GetAllSamples({ service: this.SamplesService })
     }
 
     get GetSampleById() {
-        return new GetSampleById({ service: this.SamplesService })
+        return new this._GetSampleById({ service: this.SamplesService })
     }
 
     get SamplesService() {
-        return new SamplesService({ repository: this.SamplesRepository })
+        return new this._SamplesService({ repository: this.SamplesRepository })
     }
 
     get SamplesRepository() {
-        return new SamplesRepository({ data: Data })
+        return new this._SamplesRepository({ data: this._Data })
     }
 }

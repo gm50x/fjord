@@ -17,6 +17,10 @@ module.exports = class SamplesService extends BaseService {
     }
 
     getSampleById(id) {
+        id = Number(id)
+        if (!id && id !== 0) {
+            throw new Error('Validation Error: provided id is not valid')
+        }
         return this.repository.getById(id)
     }
 }
