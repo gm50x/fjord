@@ -1,10 +1,10 @@
 module.exports = class SamplesDependencyInjector {
-    constructor({ repository, service, data, getAllSamples, getSamplesById }) {
+    constructor({ repository, service, data, getAllSamples, getSampleById }) {
         this._Data = data
         this._SamplesService = service
         this._SamplesRepository = repository
         this._GetAllSamples = getAllSamples
-        this._GetSampleById = getSamplesById
+        this._GetSampleById = getSampleById
     }
 
     get GetAllSamples() {

@@ -21,7 +21,7 @@ module.exports = class Samples {
     _mapDependencies() {
         return new SamplesDependencyInjector({
             getAllSamples: GetAllSamples,
-            getSamplesById: GetSampleById,
+            getSampleById: GetSampleById,
             service: SamplesService,
             repository: SamplesRepository,
             data: Data

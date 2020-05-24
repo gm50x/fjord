@@ -1,3 +1,3 @@
-module.exports = class MockService {
+module.exports = class MockRepository {
     constructor() { }
 }
