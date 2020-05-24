@@ -1,15 +1,20 @@
 const { strictEqual, doesNotThrow } = require('assert')
 
 const GetAllSamples = require('../../src/Samples/src/controllers/GetAllSamples')
+
 const MockService = require('../utils/MockService')
+const MockRequest = require('../utils/MockRequest')
+const MockResponse = require('../utils/MockResponse')
 
 const className = 'GetAllSamples'
 
 describe(`${className}`, () => {
-    let instance, service
+    let instance, service, res, req
     beforeEach(() => {
         service = new MockService()
         instance = new GetAllSamples({ service })
+        req = new MockRequest({})
+        res = new MockResponse({})
     })
 
     it(`Should instantiate a ${className} object`, () => {
@@ -29,7 +34,7 @@ describe(`${className}`, () => {
     it(`Should not throw upon activate`, () => {
         service.getAllSamples = () => { }
         doesNotThrow(() => {
-            instance.activate()
+            instance.activate(req, res)
         }, 'Object throws upon calling activate')
     })
 

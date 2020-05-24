@@ -1,15 +1,20 @@
 const { strictEqual, doesNotThrow, throws } = require('assert')
 
 const GetSampleById = require('../../src/Samples/src/controllers/GetSampleById')
+
 const MockService = require('../utils/MockService')
+const MockRequest = require('../utils/MockRequest')
+const MockResponse = require('../utils/MockResponse')
 
 const className = 'GetSampleById'
 
 describe(`${className}`, () => {
-    let instance, service
+    let instance, service, req, res
     beforeEach(() => {
         service = new MockService()
         instance = new GetSampleById({ service })
+        req = new MockRequest({})
+        res = new MockResponse({})
     })
 
     it(`Should instantiate a ${className} object`, () => {
@@ -28,15 +33,17 @@ describe(`${className}`, () => {
 
     it(`Should not throw upon calling activate with a numeric id`, () => {
         service.getSampleById = (id) => { }
+        req.params.id = 0
         doesNotThrow(() => {
-            instance.activate(0)
+            instance.activate(req, res)
         }, 'Object throws upon calling activate')
     })
 
-    it(`Should throw upon calling activate with a non-numeric id`, () => {
+    it(`Should throw upon calling activate with a non-numeric id param`, () => {
         service.getSampleById = (id) => { }
+        req.params.id = 'a'
         throws(() => {
-            instance.activate('a')
+            instance.activate(req, res)
         }, 'Object does not throws upon calling activate with incorrect parameters')
     })
 })
