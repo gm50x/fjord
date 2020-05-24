@@ -1,7 +1,7 @@
 {
-  "name": "dependency",
+  "name": "fjord",
   "version": "1.0.0",
-  "description": "",
+  "description": "POC on Dependency Injection with JavaScript",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
