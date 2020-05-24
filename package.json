@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=DEVELOPMENT nodemon index.js",
+    "test": "NODE_ENV=TEST_RUNNER mocha tests --recursive"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "mocha": "^7.2.0",
     "nodemon": "^2.0.4"
   }
 }
