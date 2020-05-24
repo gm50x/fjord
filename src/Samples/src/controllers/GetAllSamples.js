@@ -10,7 +10,8 @@ module.exports = class GetAllSamples extends BaseController {
         super(di)
     }
 
-    activate() {
-        return this.service.getAllSamples()
+    activate = (req, res) => {
+        const samples = this.service.getAllSamples()
+        return res.status(200).json(samples)
     }
 }

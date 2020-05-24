@@ -10,11 +10,14 @@ module.exports = class GetSampleById extends BaseController {
         super(di)
     }
 
-    activate(id) {
-        id = Number(id)
+    activate = (req, res) => {
+        const id = Number(req.params.id)
         if (!id && id !== 0) {
             throw new Error('Validation Error: provided id is not valid')
         }
-        return this.service.getSampleById(Number(id))
+
+        const sample = this.service.getSampleById(Number(id))
+
+        return res.status(200).json(sample)
     }
 }
