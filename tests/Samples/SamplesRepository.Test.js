@@ -1,4 +1,4 @@
-const { strictEqual, doesNotThrow, throws } = require('assert')
+const { strictEqual, deepStrictEqual, doesNotThrow, throws } = require('assert')
 
 const SamplesRepository = require('../../src/Samples/src/data/SamplesRepository')
 const MockData = require('../utils/MockData')
@@ -30,6 +30,11 @@ describe(`${className}`, () => {
         doesNotThrow(() => {
             instance.getAll()
         }, 'Object throws upon calling getAll')
+    })
+
+    it(`Should not ring the bell`, () => {
+        const actual = instance.getAll()
+        deepStrictEqual(actual, data, 'Object is ringing the bell')
     })
 
     it(`Should have a getById method`, () => {

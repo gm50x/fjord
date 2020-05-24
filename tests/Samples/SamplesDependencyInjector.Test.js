@@ -25,4 +25,9 @@ describe(`${className}`, () => {
         const actual = instance.getAllSamples !== undefined
         strictEqual(actual, true, `Object does not include the getAllSamples method`)
     })
+
+    it(`Should have a getSampleById method`, () => {
+        const actual = instance.getSampleById !== undefined
+        strictEqual(actual, true, `Object does not include the getAllSamples method`)
+    })
 })
