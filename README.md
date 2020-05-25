@@ -1,5 +1,5 @@
 # Fjord
-Proof of concept on Dependency Injection with Javascript
+Proof of Concept on Dependency Injection with Javascript
 
 # Getting Started
 
