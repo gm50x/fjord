@@ -4,5 +4,5 @@
     [ ] Custom Errors
     [x] Test DependencyInjector
     [x] Write Tests for ErrorHandler.js
-    [ ] Write Tests for AsyncWrapper.js
+    [x] Write Tests for AsyncWrapper.js
     [x] Refactor tests for Async Design
