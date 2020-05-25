@@ -8,9 +8,11 @@ module.exports = class AppRouter extends BaseRouter {
         this._init()
     }
 
+    addModule(moduleRouter) {
+        this._routes.use(moduleRouter.getRoutes())
+    }
+
     _init() {
-        const { GetAllSamples, GetSampleById } = new Samples()
-        this.addRoute('GET', 'samples', GetAllSamples.activate)
-        this.addRoute('GET', 'samples/:id', GetSampleById.activate)
+        this.addModule(new Samples().getRouter({ router: this, basePath: 'samples' }))
     }
 }

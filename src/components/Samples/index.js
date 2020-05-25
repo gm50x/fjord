@@ -1,6 +1,3 @@
-/**
- * Exposing individual layers with the dependency injector
- */
 const GetAllSamples = require('./src/controllers/GetAllSamples')
 const GetSampleById = require('./src/controllers/GetSampleById')
 const SamplesService = require('./src/services/SamplesService')
@@ -16,6 +13,12 @@ module.exports = class Samples {
         this.GetSampleById = di.GetSampleById
         this.Service = di.SamplesService
         this.Repository = di.SamplesRepository
+    }
+
+    getRouter({ router, basePath }) {
+        router.addRoute('GET', `${basePath}`, this.GetAllSamples.activate)
+        router.addRoute('GET', `${basePath}/:id`, this.GetSampleById.activate)
+        return router
     }
 
     _mapDependencies() {
