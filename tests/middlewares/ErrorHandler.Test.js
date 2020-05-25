@@ -8,8 +8,8 @@ describe(`${className}`, () => {
     let instance, err, req, res, next
     beforeEach(() => {
         instance = new ErrorHandler()
-        req = new MockRequest()
-        res = new MockResponse()
+        req = new MockRequest({})
+        res = new MockResponse({})
         err = new Error('Mock Test Error')
     })
     it(`Should instantiate an ${className} object`, () => {

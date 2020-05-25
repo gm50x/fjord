@@ -11,8 +11,8 @@ describe(`${className}`, () => {
         service = new MockService()
         service.getSampleById = (id) => { }
         instance = new GetSampleById({ service })
-        req = new MockRequest()
-        res = new MockResponse()
+        req = new MockRequest({})
+        res = new MockResponse({})
         err = undefined
     })
 
