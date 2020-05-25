@@ -1,5 +1,7 @@
 const { strictEqual } = require('assert')
 
+
+const { BaseController } = require('../../src/core/base')
 const GetSampleById = require('../../src/components/Samples/src/controllers/GetSampleById')
 
 const { MockService, MockRequest, MockResponse } = require('../utils')
@@ -23,6 +25,11 @@ describe(`${className}`, () => {
     it(`Should have a default activate method`, () => {
         const actual = instance.activate !== undefined
         strictEqual(actual, true, `Object does not include the default activate method`)
+    })
+
+    it(`Should be an instance of the ${BaseController.name} class`, () => {
+        const actual = instance instanceof BaseController
+        strictEqual(actual, true, `Object is not an instance of ${BaseController.name}`)
     })
 
     it(`Should include an appended service object`, () => {

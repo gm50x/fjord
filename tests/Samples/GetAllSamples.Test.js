@@ -1,9 +1,9 @@
 const { strictEqual } = require('assert')
 
+const { BaseController } = require('../../src/core/base')
 const GetAllSamples = require('../../src/components/Samples/src/controllers/GetAllSamples')
 
 const { MockService, MockRequest, MockResponse } = require('../utils')
-
 const className = 'GetAllSamples'
 
 describe(`${className}`, () => {
@@ -19,6 +19,11 @@ describe(`${className}`, () => {
 
     it(`Should instantiate a ${className} object`, () => {
         strictEqual(instance.constructor.name, className, `Object is not an instance of ${className}`)
+    })
+
+    it(`Should be an instance of the ${BaseController.name} class`, () => {
+        const actual = instance instanceof BaseController
+        strictEqual(actual, true, `Object is not an instance of ${BaseController.name}`)
     })
 
     it(`Should include an appended service object`, () => {
