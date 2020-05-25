@@ -1,9 +1,3 @@
-/**
- * Independent
- * 
- * Dep. Tree: Repository > Data
- */
-
 module.exports = class BaseRepository {
     constructor({ data }) {
         this.data = data
