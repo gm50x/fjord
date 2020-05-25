@@ -1,9 +1,9 @@
-const { strictEqual, doesNotThrow } = require('assert')
+const { strictEqual } = require('assert')
 const { AsyncWrapper } = require('../../../src/core/middlewares')
 
 const className = 'AsyncWrapper'
 
-describe.only(`${className}`, () => {
+describe(`${className}`, () => {
     let instance, err
     beforeEach(() => {
         instance = new AsyncWrapper()
