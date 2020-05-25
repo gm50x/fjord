@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-const Samples = require('./src/Samples')
+const Samples = require('./src/components/Samples')
 const { GetAllSamples, GetSampleById } = new Samples()
 
 app.get('/samples', GetAllSamples.activate)

@@ -9,11 +9,11 @@ module.exports = class BaseRepository {
         this.data = data
     }
 
-    getAll() {
-        return this.data
+    async getAll() {
+        return Promise.resolve(this.data)
     }
 
-    getById(id) {
-        return this.data.find(item => item.id === id)
+    async getById(id) {
+        return Promise.resolve(this.data.find(item => item.id === id))
     }
 }

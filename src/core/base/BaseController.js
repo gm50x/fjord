@@ -3,7 +3,7 @@ module.exports = class BaseController {
         this.service = service
     }
 
-    activate() {
-        throw new Error('Method not implemented')
+    activate = async (req, res) => {
+        await Promise.reject(new Error('Method not implemented'))
     }
 }

@@ -1,15 +1,17 @@
-const { strictEqual, deepStrictEqual, doesNotThrow } = require('assert')
+const { strictEqual, deepStrictEqual } = require('assert')
 
-const SamplesRepository = require('../../src/Samples/src/data/SamplesRepository')
-const MockData = require('../utils/MockData')
+const SamplesRepository = require('../../src/components/Samples/src/data/SamplesRepository')
+
+const { MockData } = require('../utils')
 
 const className = 'SamplesRepository'
 
 describe(`${className}`, () => {
-    let instance, data
+    let instance, data, err
     beforeEach(() => {
         data = new MockData()
         instance = new SamplesRepository({ data })
+        err = undefined
     })
 
     it(`Should instantiate a ${className} object`, () => {
@@ -26,14 +28,14 @@ describe(`${className}`, () => {
         strictEqual(actual, true, `Object does not have a getAll method`)
     })
 
-    it(`Should not throw upon calling getAll`, () => {
-        doesNotThrow(() => {
-            instance.getAll()
-        }, 'Object throws upon calling getAll')
+    it(`Should not throw upon calling getAll`, async () => {
+        await instance.getAll().catch(error => err = error)
+        const actual = err === undefined
+        strictEqual(actual, true, 'Object throws upcon calling getAll')
     })
 
-    it(`Should not ring the bell`, () => {
-        const actual = instance.getAll()
+    it(`Should not ring the bell`, async () => {
+        const actual = await instance.getAll()
         deepStrictEqual(actual, data, 'Object is ringing the bell')
     })
 
@@ -42,24 +44,24 @@ describe(`${className}`, () => {
         strictEqual(actual, true, `Object does not have a getById method`)
     })
 
-    it(`Should not throw upon calling getById`, () => {
-        doesNotThrow(() => {
-            instance.getById(0)
-        }, 'Object throws upon calling getById')
+    it(`Should not throw upon calling getById`, async () => {
+        await instance.getById(0).catch(error => err = error)
+        const actual = err === undefined
+        strictEqual(actual, true, 'Object throws upcon calling getById')
     })
 
-    it(`Should return object with specified id`, () => {
-        const actual = instance.getById(1).id === 1
+    it(`Should return object with specified id`, async () => {
+        const actual = (await instance.getById(1)).id === 1
         strictEqual(actual, true, `Object does not return requested object`)
     })
 
-    it(`Should return foo upon providing id 1`, () => {
-        const actual = instance.getById(1).word === 'foo'
+    it(`Should return foo upon providing id 1`, async () => {
+        const actual = (await instance.getById(1)).word === 'foo'
         strictEqual(actual, true, `Object does not return requested object`)
     })
 
-    it(`Should return undefined if no object is found for the specified id`, () => {
-        const actual = instance.getById(100) === undefined
+    it(`Should return undefined if no object is found for the specified id`, async () => {
+        const actual = (await instance.getById(100)) === undefined
         strictEqual(actual, true, `Object does not return requested object`)
     })
 })

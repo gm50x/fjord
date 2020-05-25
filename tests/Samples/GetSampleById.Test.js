@@ -1,20 +1,19 @@
-const { strictEqual, doesNotThrow, throws } = require('assert')
+const { strictEqual } = require('assert')
 
-const GetSampleById = require('../../src/Samples/src/controllers/GetSampleById')
+const GetSampleById = require('../../src/components/Samples/src/controllers/GetSampleById')
 
-const MockService = require('../utils/MockService')
-const MockRequest = require('../utils/MockRequest')
-const MockResponse = require('../utils/MockResponse')
-
+const { MockService, MockRequest, MockResponse } = require('../utils')
 const className = 'GetSampleById'
 
 describe(`${className}`, () => {
-    let instance, service, req, res
+    let instance, service, req, res, err
     beforeEach(() => {
         service = new MockService()
+        service.getSampleById = (id) => { }
         instance = new GetSampleById({ service })
         req = new MockRequest({})
         res = new MockResponse({})
+        err = undefined
     })
 
     it(`Should instantiate a ${className} object`, () => {
@@ -31,19 +30,17 @@ describe(`${className}`, () => {
         strictEqual(actual, true, `Object does not include it's own service`)
     })
 
-    it(`Should not throw upon calling activate with a numeric id`, () => {
-        service.getSampleById = (id) => { }
-        req.params.id = 0
-        doesNotThrow(() => {
-            instance.activate(req, res)
-        }, 'Object throws upon calling activate')
+    it(`Should not throw upon calling activate with a numeric id`, async () => {
+        req.params.id = 1
+        await instance.activate(req, res).catch(error => err = error)
+        const actual = err === undefined
+        strictEqual(actual, true, 'Object threw')
     })
 
-    it(`Should throw upon calling activate with a non-numeric id param`, () => {
-        service.getSampleById = (id) => { }
+    it(`Should throw upon calling activate with a non-numeric id param`, async () => {
         req.params.id = 'a'
-        throws(() => {
-            instance.activate(req, res)
-        }, 'Object does not throws upon calling activate with incorrect parameters')
+        await instance.activate(req, res).catch(error => err = error)
+        const actual = err !== undefined
+        strictEqual(actual, true, 'Object did not throw upon passing a non-numeric id')
     })
 })

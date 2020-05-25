@@ -1,20 +1,20 @@
-const { strictEqual, doesNotThrow } = require('assert')
+const { strictEqual } = require('assert')
 
-const GetAllSamples = require('../../src/Samples/src/controllers/GetAllSamples')
+const GetAllSamples = require('../../src/components/Samples/src/controllers/GetAllSamples')
 
-const MockService = require('../utils/MockService')
-const MockRequest = require('../utils/MockRequest')
-const MockResponse = require('../utils/MockResponse')
+const { MockService, MockRequest, MockResponse } = require('../utils')
 
 const className = 'GetAllSamples'
 
 describe(`${className}`, () => {
-    let instance, service, res, req
+    let instance, service, res, req, err
     beforeEach(() => {
         service = new MockService()
+        service.getAllSamples = () => { }
         instance = new GetAllSamples({ service })
         req = new MockRequest({})
         res = new MockResponse({})
+        err = undefined
     })
 
     it(`Should instantiate a ${className} object`, () => {
@@ -31,11 +31,9 @@ describe(`${className}`, () => {
         strictEqual(actual, true, `Object does not include the default activate method`)
     })
 
-    it(`Should not throw upon activate`, () => {
-        service.getAllSamples = () => { }
-        doesNotThrow(() => {
-            instance.activate(req, res)
-        }, 'Object throws upon calling activate')
+    it(`Should throw upon calling activate`, async () => {
+        await instance.activate(req, res).catch(error => err = error)
+        const actual = err === undefined
+        strictEqual(actual, true, 'Object throws upon calling activate')
     })
-
 })

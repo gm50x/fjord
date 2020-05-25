@@ -1,10 +1,8 @@
 const { strictEqual } = require('assert')
 
-const SamplesDependencyInjector = require('../../src/Samples/src/dependency/SamplesDependencyInjector')
+const SamplesDependencyInjector = require('../../src/components/Samples/src/dependency/SamplesDependencyInjector')
 
-const MockService = require('../utils/MockService')
-const MockRepository = require('../utils/MockRepository')
-const MockData = require('../utils/MockData')
+const { MockService, MockRepository, MockData } = require('../utils')
 
 const className = 'SamplesDependencyInjector'
 

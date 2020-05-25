@@ -4,14 +4,14 @@
  * Dep. Tree: Controller > Service > Repository
  */
 
-const BaseController = require('../../../core/BaseController')
+const BaseController = require('../../../../core/base/BaseController')
 module.exports = class GetAllSamples extends BaseController {
     constructor(di) {
         super(di)
     }
 
-    activate = (req, res) => {
-        const samples = this.service.getAllSamples()
+    activate = async (req, res) => {
+        const samples = await this.service.getAllSamples()
         return res.status(200).json(samples)
     }
 }
