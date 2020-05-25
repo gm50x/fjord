@@ -20,7 +20,6 @@ describe(`${className}`, () => {
         strictEqual(actual, className, `Object is not an instance of ${className}`)
     })
 
-
     it('Should have an addRoute mehtod', () => {
         const actual = instance.addRoute !== undefined
         strictEqual(actual, true, 'Object does not include the addRoute method')
