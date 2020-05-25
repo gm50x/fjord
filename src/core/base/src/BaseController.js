@@ -1,6 +1,6 @@
 module.exports = class BaseController {
-    constructor({ service }) {
-        this.service = service
+    constructor(di = { service }) {
+        this.service = di.service
     }
 
     activate = async (req, res) => {

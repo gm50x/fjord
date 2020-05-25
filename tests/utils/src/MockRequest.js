@@ -1,8 +1,8 @@
 module.exports = class MockResponse {
-    constructor({ headers, params, query, body }) {
-        this.headers = headers || {}
-        this.params = params || {}
-        this.query = query || {}
-        this.body = body || {}
+    constructor(di = { headers: {}, params: {}, query: {}, body: {} }) {
+        this.headers = di.headers
+        this.params = di.params
+        this.query = di.query
+        this.body = di.body
     }
 }

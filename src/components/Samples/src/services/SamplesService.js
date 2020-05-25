@@ -4,7 +4,7 @@
  * Dep. Tree: Service > Repository
  */
 
-const BaseService = require('../../../../core/base/BaseService')
+const { BaseService } = require('../../../../core/base')
 
 module.exports = class SamplesService extends BaseService {
 

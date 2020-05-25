@@ -4,7 +4,7 @@
  * Dep. Tree: Controller > Service > Repository
  */
 
-const BaseController = require('../../../../core/base/BaseController')
+const { BaseController } = require('../../../../core/base')
 module.exports = class GetSampleById extends BaseController {
     constructor(di) {
         super(di)

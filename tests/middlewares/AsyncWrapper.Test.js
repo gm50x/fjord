@@ -1,5 +1,5 @@
 const { strictEqual } = require('assert')
-const { AsyncWrapper } = require('../../src/core/Middlewares')
+const { AsyncWrapper } = require('../../src/core/middlewares')
 
 const className = 'AsyncWrapper'
 

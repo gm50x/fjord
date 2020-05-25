@@ -5,8 +5,8 @@
  */
 
 module.exports = class BaseRepository {
-    constructor({ data }) {
-        this.data = data
+    constructor(di = { data }) {
+        this.data = di.data
     }
 
     async getAll() {
