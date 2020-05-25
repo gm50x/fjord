@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+    fjord-api:
+        build:
+            context: .
+            args:
+                - PORT=${PORT}
+        # Since we are building an image, we can give it a name.
+        image: fjord-srv 
+        depends_on: 
+            - fjord-data
+        environment:
+            NODE_ENV: ${ENV}
+            PORT: ${PORT}
+            DB_USER: ${DB_APP_USER}
+            DB_PASS: ${DB_APP_PASS}
+            # SET LOCALLY TO KEEP THEM SAFE IN YOUR ENVIRONMENT AND NOT ON REPOSITORIES
+            PM2_PUBLIC_KEY: ${PM2_PUBLIC_KEY}
+            PM2_SECRET_KEY: ${PM2_SECRET_KEY}
+        ports:
+            - ${PUBLIC_PORT}:${PORT}
+        container_name: 'fjord-api'
+        networks:
+            - fjord-network
+    fjord-data:
+        image: postgres:alpine
+        environment:
+            POSTGRES_PASSWORD: ${DB_ADMIN_PASS}
+        ports:
+            - ${DB_PUBLIC_PORT}:${DB_PORT}
+        container_name: 'fjord-db'
+        networks:
+            - fjord-network
+            - fjord-dba-network
+    fjord-data-admin:
+        image: dpage/pgadmin4
+        container_name: 'fjord-dba'
+        environment:
+            PGADMIN_DEFAULT_EMAIL: ${DBA_LOGIN_EMAIL}
+            PGADMIN_DEFAULT_PASSWORD: ${DBA_LOGIN_PASS}
+        ports:
+            - 8888:80
+        networks:
+            - fjord-dba-network
+networks:
+    fjord-network:
+        driver: bridge
+    fjord-dba-network:
+        driver: bridge
