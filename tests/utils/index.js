@@ -3,5 +3,7 @@ module.exports = {
     MockRepository: require('./src/MockRepository'),
     MockService: require('./src/MockService'),
     MockRequest: require('./src/MockRequest'),
-    MockResponse: require('./src/MockResponse')
+    MockResponse: require('./src/MockResponse'),
+    MockRouter: require('./src/MockRouter'),
+    MockWrapper: require('./src/MockWrapper')
 }

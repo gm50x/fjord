@@ -13,6 +13,6 @@ module.exports = class AppRouter extends BaseRouter {
     }
 
     _init() {
-        this.addModule(new Samples().getRouter({ router: this, basePath: 'samples' }))
+        this.addModule(new Samples().getRouter({ router: this, basePath: '/samples' }))
     }
 }
