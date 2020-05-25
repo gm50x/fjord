@@ -1,6 +1,6 @@
 # TODO-LIST
-    [ ] Implement Routing
-    [ ] Abstract application into App class
+    [x] Implement Routing
+    [x] Abstract application into App class
     [ ] Custom Errors
     [x] Test DependencyInjector
     [x] Write Tests for ErrorHandler.js
