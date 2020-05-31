@@ -44,6 +44,13 @@ describe(`${className}`, () => {
         strictEqual(actual, true, 'Object threw')
     })
 
+    it(`Should return status code 200 upon success`, async () => {
+        req.params.id = 1
+        await instance.activate(req, res).catch(error => err = error)
+        const actual = res.statusCode
+        strictEqual(actual, 200, 'Object does not return 200 upon success')
+    })
+
     it(`Should throw upon calling activate with a non-numeric id param`, async () => {
         req.params.id = 'a'
         await instance.activate(req, res).catch(error => err = error)

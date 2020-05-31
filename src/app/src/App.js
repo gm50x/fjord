@@ -21,8 +21,7 @@ module.exports = class App {
         this.app.use(new ErrorHandler().middleware)
     }
 
-    start(config = { port: 8000, env: 'DEVELOPMENT' }) {
-        const { port, env } = config
+    start({ port = 8000, env = 'DEVELOPMENT' }) {
         this.app.listen(port, () => console.log(`Server is running in ${env} mode on port ${port}.`))
     }
 }

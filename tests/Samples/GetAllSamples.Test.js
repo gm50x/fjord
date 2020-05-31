@@ -36,9 +36,16 @@ describe(`${className}`, () => {
         strictEqual(actual, true, `Object does not include the default activate method`)
     })
 
-    it(`Should throw upon calling activate`, async () => {
+    it(`Should not throw upon calling activate`, async () => {
         await instance.activate(req, res).catch(error => err = error)
         const actual = err === undefined
         strictEqual(actual, true, 'Object throws upon calling activate')
     })
+    
+    it(`Should return status code 200 upon success`, async () => {
+        await instance.activate(req, res).catch(error => err = error)
+        const actual = res.statusCode
+        strictEqual(actual, 200, 'Object does not return 200 upon success')
+    })
+
 })
