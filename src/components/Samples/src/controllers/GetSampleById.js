@@ -1,9 +1,3 @@
-/**
- * Dependent on service which is dependent on repository. 
- * 
- * Dep. Tree: Controller > Service > Repository
- */
-
 const { BaseController } = require('../../../../core/base')
 module.exports = class GetSampleById extends BaseController {
     constructor(di) {
@@ -17,6 +11,6 @@ module.exports = class GetSampleById extends BaseController {
             return Promise.reject(new Error('Validation Error: provided id is not valid'))
         }
         const sample = await this.service.getSampleById(id)
-        return res.status(200).json(sample)
+        return res.status(200).json(sample || {})
     }
 }

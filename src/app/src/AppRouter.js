@@ -1,10 +1,17 @@
 const { BaseRouter } = require('../../core/base')
-
+const { PostgresSequelizeConnection } = require('../../core/db')
 const { Samples } = require('../../components')
 
 module.exports = class AppRouter extends BaseRouter {
     constructor(di) {
         super(di)
+        this.db = new PostgresSequelizeConnection({
+            database: 'postgres',
+            username: 'postgres',
+            password: 'postgres@2020',
+            host: 'localhost',
+            dialect: 'postgres'
+        })
         this._init()
     }
 
@@ -13,6 +20,6 @@ module.exports = class AppRouter extends BaseRouter {
     }
 
     _init() {
-        this.addModule(new Samples().getRouter({ router: this, basePath: '/samples' }))
+        this.addModule(new Samples({ data: this.db }).getRouter({ router: this, basePath: '/samples' }))
     }
 }
